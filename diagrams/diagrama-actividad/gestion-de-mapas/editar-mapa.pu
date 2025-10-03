@@ -1,0 +1,23 @@
+@startuml
+title Gestión de Mapas - Editar Mapa
+|Administrador|
+start
+:Seleccionar mapa existente;
+:Click "Editar mapa";
+repeat
+  :Modificar contenido (formas, aforo, secciones, numeración);
+  :Click "Guardar";
+
+  |Sistema|
+  if (Datos válidos?) then (Sí)
+    :Actualizar mapa;
+    |Administrador|
+    :Confirmar éxito;
+    stop
+  else (No)
+    :Mostrar errores de validación;
+    |Administrador|
+    :Corregir cambios;
+  endif
+repeat while (Datos inválidos?) is (sí)
+@enduml

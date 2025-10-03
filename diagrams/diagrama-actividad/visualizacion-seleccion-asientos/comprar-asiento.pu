@@ -1,0 +1,50 @@
+@startuml
+title Visualización y Selección de Asientos - Comprador Final
+
+|Comprador|
+start
+:Ingresar a la página de selección;
+|Sistema|
+:Mostrar mapa de asientos con estados;
+
+|Comprador|
+repeat
+  :Seleccionar asiento(s);
+  
+  |Sistema|
+  if (Asiento disponible?) then (Sí)
+    :Marcar asiento como seleccionado temporalmente;
+  else (No)
+    |Comprador|
+    :Mostrar error, escoger otro asiento;
+  endif
+repeat while (Asiento inválido?) is (sí)
+
+|Comprador|
+:Confirmar selección;
+|Sistema|
+:Bloquear temporalmente todos los asientos seleccionados;
+
+fork
+  :Validar asiento 1;
+fork again
+  :Validar asiento 2;
+fork again
+  :Validar asiento n;
+end fork
+
+|Sistema|
+if (Pago exitoso?) then (Sí)
+  :Marcar asientos como ocupados;
+  :Generar tickets / confirmación;
+  |Comprador|
+  :Mostrar confirmación de compra;
+  stop
+else (No)
+  :Desbloquear asientos;
+  |Comprador|
+  :Mostrar error de pago;
+  :Permitir reintento;
+endif
+stop
+@enduml

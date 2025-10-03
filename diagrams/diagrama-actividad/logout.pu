@@ -1,0 +1,12 @@
+@startuml
+title Logout - Organizador / Creador de Eventos
+|Usuario|
+start
+:Click "Logout";
+
+|Sistema|
+:Finalizar sesión;
+|Usuario|
+:Redirigir a página de login;
+stop
+@enduml

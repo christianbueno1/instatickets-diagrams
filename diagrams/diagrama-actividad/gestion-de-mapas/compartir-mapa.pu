@@ -1,0 +1,21 @@
+@startuml
+title Gestión de Mapas - Compartir Mapa
+|Administrador|
+start
+:Seleccionar mapa;
+:Click "Compartir";
+:Elegir destinatarios o clientes;
+
+|Sistema|
+if (Permisos y disponibilidad válidos?) then (Sí)
+  :Enviar notificaciones / otorgar acceso;
+  |Administrador|
+  :Confirmar éxito;
+  stop
+else (No)
+  :Mostrar error de permisos o disponibilidad;
+  |Administrador|
+  :Corregir selección de destinatarios;
+  stop
+endif
+@enduml

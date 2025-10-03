@@ -1,0 +1,34 @@
+@startuml
+title Publicación e Integración - InstaTickets
+
+|Usuario|
+start
+:Iniciar publicación;
+repeat
+    :Seleccionar tipo de publicación;
+    |Sistema|
+    if (Contenido válido?) then (Sí)
+    fork
+        if (Tipo snippet?) then (Sí)
+        :Generar snippet embebible;
+        endif
+    fork again
+        if (Tipo PDF?) then (Sí)
+        :Generar PDF;
+        endif
+    fork again
+        if (Independencia backend?) then (Sí)
+        :Exportar datos / API;
+        endif
+    end fork
+    |Usuario|
+    :Mostrar confirmación de publicación;
+    stop
+    else (No)
+    |Usuario|
+    :Mostrar errores de validación;
+    :Corregir contenido y reintentar;
+    endif
+repeat while (Contenido inválido?) is (sí)
+
+@enduml

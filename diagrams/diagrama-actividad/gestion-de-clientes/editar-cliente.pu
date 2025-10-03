@@ -1,0 +1,24 @@
+@startuml
+title Gestión de Clientes - Editar Cliente
+|Administrador|
+start
+:Seleccionar cliente;
+:Click "Editar cliente";
+repeat
+  :Modificar datos (nombre, contacto, correo, etc.);
+  :Click "Guardar";
+
+  |Sistema|
+  if (Datos válidos?) then (Sí)
+    :Actualizar registro del cliente;
+    |Administrador|
+    :Confirmar actualización exitosa;
+    stop
+  else (No)
+    :Mostrar errores de validación;
+    |Administrador|
+    :Corregir datos;
+  endif
+repeat while (Datos inválidos?) is (sí) not (no)
+stop
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+title Gestión de Clientes - Asociar Mapa
+|Administrador|
+start
+:Seleccionar cliente;
+:Click "Asociar mapa";
+:Elegir mapa de la lista o subir nuevo;
+
+|Sistema|
+if (Mapa disponible?) then (Sí)
+  :Asociar mapa al cliente;
+  |Administrador|
+  :Confirmar asociación exitosa;
+  stop
+else (No)
+  :Mostrar error de disponibilidad;
+  |Administrador|
+  :Elegir otro mapa;
+  stop
+endif
+@enduml

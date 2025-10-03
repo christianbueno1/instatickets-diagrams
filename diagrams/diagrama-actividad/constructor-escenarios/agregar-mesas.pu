@@ -1,0 +1,20 @@
+@startuml
+title Edición Escenario - Agregar Mesas
+|Diseñador|
+start
+repeat
+  :Seleccionar sección;
+  :Click "Agregar mesa";
+  :Ajustar tamaño, forma y posición;
+
+  |Sistema|
+  if (Mesa válida?) then (Sí)
+    :Mesa agregada;
+    stop
+  else (No)
+    :Mostrar error;
+    |Diseñador|
+    :Corregir mesa;
+  endif
+repeat while (Mesa inválida?) is (sí)
+@enduml

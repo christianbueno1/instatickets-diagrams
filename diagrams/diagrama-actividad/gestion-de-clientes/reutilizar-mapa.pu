@@ -1,0 +1,21 @@
+@startuml
+title Gestión de Clientes - Reutilizar Mapa
+|Administrador|
+start
+:Seleccionar cliente;
+:Click "Reutilizar mapa";
+:Elegir mapa plantilla existente;
+
+|Sistema|
+if (Plantilla existe?) then (Sí)
+  :Cargar mapa y asociar al cliente;
+  |Administrador|
+  :Confirmar asociación exitosa;
+  stop
+else (No)
+  :Mostrar error de plantilla no encontrada;
+  |Administrador|
+  :Seleccionar otra plantilla;
+  stop
+endif
+@enduml

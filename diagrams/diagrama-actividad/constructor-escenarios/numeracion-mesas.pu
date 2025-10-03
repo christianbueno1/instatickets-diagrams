@@ -1,0 +1,19 @@
+@startuml
+title Edición Escenario - Numeración
+|Diseñador|
+start
+repeat
+  :Seleccionar sección o mesas;
+  :Click "Auto-numerar" o asignar manualmente;
+
+  |Sistema|
+  if (Numeración válida?) then (Sí)
+    :Números asignados;
+    stop
+  else (No)
+    :Mostrar error (duplicados, inconsistencias);
+    |Diseñador|
+    :Corregir numeración;
+  endif
+repeat while (Numeración inválida?) is (sí)
+@enduml

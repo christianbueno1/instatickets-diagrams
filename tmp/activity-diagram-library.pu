@@ -1,0 +1,33 @@
+@startuml Diagrama-de-Actividad--Biblioteca
+|Miembro|
+start
+
+if (¿Borrower or returning?) then (Borrower)
+  :Find book on shelf;
+else (Returning)
+'   :Search for book;
+endif
+:Wait in queue;
+
+|Bibliotecario|
+
+repeat
+fork
+if (¿Returning o Borrowing?) then (Returning)
+  fork
+    :Record return;
+  fork again
+    :Put book back on shelf;
+  end fork
+else (Borrowing)
+  :Record borrowing;
+endif
+
+:Prepare for next member;
+end fork
+repeat while (more members in queue?) is ( yes)
+|Miembro|
+:Receive book or receipt;
+
+stop
+@enduml

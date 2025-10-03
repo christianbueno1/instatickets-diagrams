@@ -1,0 +1,52 @@
+@startuml Gestion-Clientes-Mapas
+|Administrador|
+start
+:Accede a módulo Clientes/Mapas;
+
+partition "Gestión" {
+  fork
+    :Crear cliente;
+    :Llenar formulario cliente;
+    |Sistema|
+    :Validar datos;
+    if (Datos válidos?) then (Sí)
+      :Registrar cliente;
+    else (No)
+      :Mostrar error;
+    endif
+  fork again
+    :Editar cliente;
+    :Seleccionar cliente;
+    :Modificar datos;
+    |Sistema|
+    :Guardar cambios;
+  fork again
+    :Eliminar cliente;
+    :Seleccionar cliente;
+    :Confirmar eliminación;
+    |Sistema|
+    :Borrar cliente;
+  fork again
+    :Crear mapa;
+    :Seleccionar cliente;
+    :Definir datos del mapa;
+    |Sistema|
+    :Registrar mapa asociado;
+  fork again
+    :Editar mapa;
+    :Seleccionar mapa existente;
+    :Modificar parámetros;
+    |Sistema|
+    :Actualizar mapa;
+  fork again
+    :Compartir mapa;
+    :Seleccionar mapa;
+    |Sistema|
+    :Generar link/snippet de integración;
+  end fork
+}
+
+|Administrador|
+:Visualiza lista actualizada de clientes/mapas;
+stop
+@enduml

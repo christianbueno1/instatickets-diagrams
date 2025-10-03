@@ -1,0 +1,20 @@
+@startuml
+title Edición Escenario - Agregar Formas
+|Diseñador|
+start
+repeat
+  :Seleccionar sección del escenario;
+  :Click "Agregar forma";
+  :Ajustar tamaño y posición;
+
+  |Sistema|
+  if (Validar superposición / restricciones?) then (Sí)
+    :Forma agregada;
+    stop
+  else (No)
+    :Mostrar error;
+    |Diseñador|
+    :Ajustar forma;
+  endif
+repeat while (Forma inválida?) is (sí)
+@enduml

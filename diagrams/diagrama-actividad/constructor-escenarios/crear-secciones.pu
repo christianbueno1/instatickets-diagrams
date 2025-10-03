@@ -1,0 +1,19 @@
+@startuml
+title Edición Escenario - Crear Secciones
+|Diseñador|
+start
+repeat
+  :Click "Agregar sección";
+  :Definir nombre, color, límites;
+
+  |Sistema|
+  if (Sección válida?) then (Sí)
+    :Sección creada;
+    stop
+  else (No)
+    :Mostrar error;
+    |Diseñador|
+    :Corregir sección;
+  endif
+repeat while (Sección inválida?) is (sí)
+@enduml

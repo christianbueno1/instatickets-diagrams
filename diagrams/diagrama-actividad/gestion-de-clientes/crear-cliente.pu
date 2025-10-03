@@ -1,0 +1,25 @@
+@startuml
+title Gestión de Clientes - Crear Cliente
+|Administrador|
+start
+repeat
+  :Ir a sección Clientes;
+  :Click "Nuevo Cliente";
+  :Completar formulario (empresa, contacto, correo);
+  :Click "Guardar";
+
+  |Sistema|
+  if (Formulario válido?) then (Sí)
+    :Crear registro de cliente;
+    :Actualizar lista de clientes;
+    |Administrador|
+    :Ver cliente creado en la lista;
+    stop
+  else (No)
+    :Mostrar errores de validación;
+    |Administrador|
+    :Corregir formulario;
+  endif
+repeat while (Formulario inválido?) is (sí) not (no)
+stop
+@enduml

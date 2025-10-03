@@ -1,0 +1,23 @@
+@startuml
+title Gestión de Mapas - Crear Mapa
+|Administrador|
+start
+repeat
+  :Ir a sección Mapas;
+  :Click "Nuevo Mapa";
+  :Completar formulario (nombre, descripción, dimensiones, tipo);
+  :Click "Guardar";
+
+  |Sistema|
+  if (Formulario válido?) then (Sí)
+    :Crear mapa;
+    |Administrador|
+    :Confirmar éxito;
+    stop
+  else (No)
+    :Mostrar errores de validación;
+    |Administrador|
+    :Corregir formulario;
+  endif
+repeat while (Formulario inválido?) is (sí)
+@enduml

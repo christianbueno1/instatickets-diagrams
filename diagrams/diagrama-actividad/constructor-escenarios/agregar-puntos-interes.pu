@@ -1,0 +1,20 @@
+@startuml
+title Edición Escenario - Puntos de Interés
+|Diseñador|
+start
+repeat
+  :Click "Agregar punto de interés";
+  :Seleccionar tipo (entrada, salida, barra, escenario);
+  :Ajustar posición;
+
+  |Sistema|
+  if (Punto válido?) then (Sí)
+    :Punto agregado;
+    stop
+  else (No)
+    :Mostrar error;
+    |Diseñador|
+    :Corregir posición;
+  endif
+repeat while (Punto inválido?) is (sí)
+@enduml

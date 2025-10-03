@@ -1,0 +1,21 @@
+@startuml
+title Login - Organizador / Creador de Eventos
+|Usuario|
+start
+repeat
+    :Ingresar correo y contraseña;
+    :Click "Login";
+
+    |Sistema|
+    if (Credenciales válidas?) then (Sí)
+        :Autenticar usuario;
+        |Usuario|
+        :Mostrar panel principal;
+        stop
+    else (No)
+        :Mostrar error de login;
+        |Usuario|
+        :Reintentar ingreso de credenciales;
+    endif
+repeat while (Credenciales inválidas?) is (sí)
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+title Edición Escenario - Configurar Aforo
+|Diseñador|
+start
+repeat
+  :Seleccionar sección o mapa completo;
+  :Ingresar capacidad máxima;
+
+  |Sistema|
+  if (Aforo válido?) then (Sí)
+    :Asignar aforo;
+    stop
+  else (No)
+    :Mostrar error;
+    |Diseñador|
+    :Corregir capacidad;
+  endif
+repeat while (Aforo inválido?) is (sí)
+@enduml

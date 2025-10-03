@@ -1,0 +1,90 @@
+@startuml Diagrama-de-Casos-de-Uso--InstaTickets
+' Title: Diagrama de Casos de Uso - InstaTickets
+left to right direction
+
+actor "Administrador del sistema" as Admin
+'actor "Organizador / Creador de Eventos" as Organizer
+actor "Usuario de la Plataforma" as User
+actor "Comprador Final" as Buyer
+actor "Organizador" as Org
+actor "Creador de Eventos" as Cde
+
+'Generalization
+User <|-- Org
+User <|-- Cde
+
+rectangle "InstaTickets" {
+  
+  usecase "Login" as UC_Login
+  usecase "Logout" as UC_Logout
+  usecase "Crear/Editar Cliente" as UC_Cliente
+  usecase "Asociar mapa a cliente" as UC_AsociarMapa
+  usecase "Reutilizar mapa" as UC_ReutilizarMapa
+  usecase "Compartir mapa" as UC_CompartirMapa
+  usecase "Editar metadatos de cliente/mapa" as UC_Metadatos
+  
+  usecase "Crear/Editar mapa" as UC_CrearMapa
+  usecase "Crear Sección/Localidad" as UC_CrearSeccion
+  usecase "Definir Aforo" as UC_DefinirAforo
+  usecase "Poblar asientos" as UC_PoblarAsientos
+  usecase "Subir planograma" as UC_SubirPlanograma
+  usecase "Crear Localidad Especial" as UC_LocalidadEspecial
+  usecase "Asignar clasificación/estado" as UC_Clasificacion
+  usecase "Generar snippet HTML/JS" as UC_Snippet
+  
+  usecase "Visualizar mapa" as UC_VisualizarMapa
+  usecase "Seleccionar asiento" as UC_SeleccionarAsiento
+  usecase "Zoom/Navegación" as UC_Zoom
+  usecase "Ver puntos de interés y escala" as UC_PuntosInteres
+  usecase "Recepción de actualización externa" as UC_Actualizacion
+
+}
+
+' Relaciones actor ↔ casos de uso
+Admin --> UC_Cliente
+Admin --> UC_AsociarMapa
+Admin --> UC_ReutilizarMapa
+Admin --> UC_CompartirMapa
+Admin --> UC_Metadatos
+
+/'
+Organizer --> UC_Login
+Organizer --> UC_Logout
+Organizer --> UC_CrearMapa
+Organizer --> UC_CrearSeccion
+Organizer --> UC_DefinirAforo
+Organizer --> UC_PoblarAsientos
+Organizer --> UC_SubirPlanograma
+Organizer --> UC_LocalidadEspecial
+Organizer --> UC_Clasificacion
+Organizer --> UC_Snippet
+'/
+
+
+User --> UC_Login
+User --> UC_Logout
+User --> UC_CrearMapa
+User --> UC_CrearSeccion
+User --> UC_DefinirAforo
+User --> UC_PoblarAsientos
+User --> UC_SubirPlanograma
+User --> UC_LocalidadEspecial
+User --> UC_Clasificacion
+User --> UC_Snippet
+
+Buyer --> UC_VisualizarMapa
+Buyer --> UC_SeleccionarAsiento
+Buyer --> UC_Zoom
+Buyer --> UC_PuntosInteres
+Buyer --> UC_Actualizacion
+
+' Include y Extend
+UC_Login <|-- UC_Logout : <<include>>
+UC_CrearSeccion <|-- UC_CrearMapa : <<include>>
+UC_SeleccionarAsiento <|.. UC_Actualizacion : <<extend>>
+
+' Dependencias
+UC_Snippet ..> UC_CrearMapa : <<depend>>
+UC_CompartirMapa ..> UC_CrearMapa : <<depend>>
+
+@enduml
